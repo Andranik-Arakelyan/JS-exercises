@@ -26,66 +26,67 @@ function Menu(name, type, price){
     this.type = type;
     this.price = price;
 }
-
+ 
 
 function CoffeShop() {
     this.name = "Starbucks";
     this.menu = [new Menu("Capucino", "drink", 2.5), new Menu("Americano", "drink", 3), 
                     new Menu("Spagetti", "food", 5), new Menu("Crap", "food", 4)];
     this.orders = [];
-
-    this.addOrder = function(item) {
-        for(let elem of this.menu) {
-            if(elem.name === item) {
-                this.orders.push(item);
-                return `${item} is added.`;
-            } 
-        }
-        return `${item} is currently unavailable!`;
-    };
-    this.fulfillOrder = function(){
-        if(this.orders.length){
-            let item = this.orders.shift();
-            return `The ${item} is ready`;
-        } else {
-            return "All orders have been fulfilled!";
-        }
-
-    };
-
-    this.listOrders = function() {
-        return this.orders;
-    };
-
-    this.dueAmount = function() {
-        return this.orders.reduce((acum, itemName) => {
-            for(let obj of this.menu) {
-                if(itemName === obj.name) {
-                    return acum + obj.price;
-                }
-            }
-        }, 0);
-    };
-
-
-    this.cheapestItem = function() {
-        return this.menu.reduce(function(acum, item){
-            return (item.price < acum.price) ? item: acum;
-        }).name;
-    };
-
-    this.drinkOnly = function() {
-        return this.menu.filter(function(item){
-            return item.type === "drink";
-        }).map((item) => item.name);
-    };
-
-    this.foodOnly = function() {
-        return this.menu.filter(function(item){
-            return item.type === "food";
-        }).map((item) => item.name);
-    };
 }
+
+
+CoffeShop.prototype.addOrder = function(item) {
+    for(let elem of this.menu) {
+        if(elem.name === item) {
+            this.orders.push(item);
+            return `${item} is added.`;
+        } 
+    }
+    return `${item} is currently unavailable!`;
+};
+
+CoffeShop.prototype.fulfillOrder = function(){
+    if(this.orders.length){
+        let item = this.orders.shift();
+        return `The ${item} is ready`;
+    } else {
+        return "All orders have been fulfilled!";
+    }
+
+};
+
+CoffeShop.prototype.listOrders = function() {
+    return this.orders;
+};
+
+CoffeShop.prototype.dueAmount = function() {
+    return this.orders.reduce((acum, itemName) => {
+        for(let obj of this.menu) {
+            if(itemName === obj.name) {
+                return acum + obj.price;
+            }
+        }
+    }, 0);
+};
+
+CoffeShop.prototype.cheapestItem = function() {
+    return this.menu.reduce(function(acum, item){
+        return (item.price < acum.price) ? item: acum;
+    }).name;
+};
+
+CoffeShop.prototype.drinkOnly = function() {
+    return this.menu.filter(function(item){
+        return item.type === "drink";
+    }).map((item) => item.name);
+};
+
+CoffeShop.prototype.foodOnly = function() {
+    return this.menu.filter(function(item){
+        return item.type === "food";
+    }).map((item) => item.name);
+};
 
 let starbucks = new CoffeShop();
 

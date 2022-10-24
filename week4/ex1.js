@@ -12,7 +12,7 @@ function freeShipping(obj) {
     for(let key in obj) {
         total += obj[key];
     }
-    return total > 50 ? true : false; 
+    return total > 50; 
 
 }
 

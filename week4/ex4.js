@@ -14,14 +14,18 @@ Notes:
 function Circle(radius) {
     this.radius = radius;
     this.diameter = this.radius * 2;
-    this.getC = function() {
-        return (Math.PI * this.diameter).toFixed(2);
-    };
-    this.getA = function() {
-        return (Math.PI * this.radius ** 2).toFixed(2);
-    }
 }
 
+
 let circle = new Circle(4);
+
+Circle.prototype.getC = function() {
+    return (Math.PI * this.diameter).toFixed(2);
+};
+
+Circle.prototype.getA = function() {
+    return (Math.PI * this.radius ** 2).toFixed(2);
+};
+
 
 console.log(circle.radius, " ", circle.diameter, " ", circle.getC(), " ", circle.getA());

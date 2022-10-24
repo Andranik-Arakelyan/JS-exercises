@@ -15,15 +15,11 @@ function mapLetters(str) {
     for(let i = 0; i < str.length; i++) {
         let key = str[i];
 
-        if( !(key in result)) {
-         
-            result[key] = [];
-        } 
-
-        if(key in result) {
+        if( !(key in result)) {     
+            result[key] = [i];
+        } else{
             result[key].push(i);
         }
-
     }
     
     return result;

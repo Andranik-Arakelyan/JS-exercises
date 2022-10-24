@@ -15,30 +15,34 @@ function TV(brand) {
     this.brand = brand;
     this.channel = 1;
     this.volume = 50;
-    this.increaseVolume = function(){
-        if(this.volume < 100) {
-            this.volume++;
-        }
-    };  
-    this.decreaseVolume = function(){
-        if(this.volume > 0) {
-            this.volume--;
-        }
-    };
-    this.setChannel = function(channel){
-        if(channel <= 50 && channel >= 1) {
-            this.channel = channel;
-        }
-    };
-    this.resetTv = function(){
-        console.log("Reset TV");
-        Object.assign(this, new TV(brand));
-    };
-
-    this.getStatus = function() {
-        console.log(`${this.brand} at channel ${this.channel}, volume ${this.volume}`);
-    };
 }
+
+TV.prototype.increaseVolume = function(){
+    if(this.volume < 100) {
+        this.volume++;
+    }
+};
+
+TV.prototype.decreaseVolume = function(){
+    if(this.volume > 0) {
+        this.volume--;
+    }
+};
+
+TV.prototype.setChannel = function(channel){
+    if(channel <= 50 && channel >= 1) {
+        this.channel = channel;
+    }
+};
+
+TV.prototype.resetTv = function(){
+    console.log("Reset TV");
+    Object.assign(this, new TV(brand));
+};
+
+TV.prototype.getStatus = function() {
+    console.log(`${this.brand} at channel ${this.channel}, volume ${this.volume}`);
+};
 
 
 let TV1 = new TV("Panasonic");
